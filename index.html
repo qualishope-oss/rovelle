@@ -6,20 +6,57 @@
 <title>Audifort | Hearing Wellness | Available Packages &amp; 90-Day Guarantee</title>
 <meta name="description" content="Explore Audifort liquid supplement details, ingredients, 2-, 3-, and 6-bottle offers, bonus guides and seller guarantee terms. Independent affiliate information page.">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<!-- Canonical dinâmico: inclui ?id=1..50000 quando o parâmetro é válido.
-     Observação SEO: use URLs próprias somente se cada uma representar conteúdo realmente distinto. -->
+<!-- Product variations are demonstration references, not separate products. -->
 <link id="canonical-link" rel="canonical" href="https://rovelle.qualishope.workers.dev/">
 <script>
 (function () {
-  var canonical = document.getElementById('canonical-link');
-  if (!canonical) return;
-  var params = new URLSearchParams(window.location.search);
-  var id = params.get('id');
-  if (id && /^([1-9][0-9]{0,4})$/.test(id) && Number(id) <= 50000) {
-    canonical.href = 'https://rovelle.qualishope.workers.dev/?id=' + id;
-  } else {
-    canonical.href = 'https://rovelle.qualishope.workers.dev/';
-  }
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get('id');
+  const match = raw && /^(?:audifort-)?([0-9]{1,5})$/.exec(raw);
+  if (!match) return;
+  const number = Number(match[1]);
+  if (!Number.isInteger(number) || number < 1 || number > 50000) return;
+
+  const titles = [
+    'Audifort Buying Guide',
+    'Audifort Bottle Packages',
+    'Audifort Product Information',
+    'Audifort Bundle Comparison',
+    'Audifort Purchase Options',
+    'Audifort Shopping Guide',
+    'Audifort Order Information',
+    'Audifort Available Packages',
+    'Audifort Product Overview',
+    'Audifort Package Selection'
+  ];
+  const descriptions = [
+    'Explore Audifort bottle packages and review the seller offer before buying.',
+    'Compare Audifort package options and check current checkout terms.',
+    'Review Audifort product information, available bundles and purchase details.',
+    'Find Audifort shopping information and see the available bottle packages.',
+    'Learn about Audifort purchase options and seller guarantee terms.',
+    'Explore Audifort product details and package selection information.',
+    'Review Audifort bottle bundles and follow the link to the seller checkout.',
+    'Discover Audifort ordering details and compare available packages.',
+    'Browse Audifort product information before selecting a bottle bundle.',
+    'See Audifort purchase details, package pricing and seller terms.'
+  ];
+  const code = String(number).padStart(5, '0');
+  const title = titles[(number - 1) % titles.length] + ' | Demo ' + code;
+  const description = descriptions[Math.floor((number - 1) / titles.length) % descriptions.length];
+  document.title = title;
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute('content', description);
+  const robots = document.querySelector('meta[name="robots"]');
+  if (robots) robots.setAttribute('content', 'noindex,follow');
+  document.addEventListener('DOMContentLoaded', function () {
+    const banner = document.createElement('div');
+    banner.setAttribute('role', 'note');
+    banner.style.cssText = 'padding:12px 20px;background:#e8f9fa;color:#043b46;text-align:center;font:600 13px Arial,sans-serif';
+    banner.textContent = 'Demo reference ' + code + ' — This is the same Audifort product, not a separate listing.';
+    const main = document.querySelector('main');
+    if (main) main.prepend(banner);
+  });
 })();
 </script>
 <meta name="theme-color" content="#043b46">
